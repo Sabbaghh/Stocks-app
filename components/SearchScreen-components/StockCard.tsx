@@ -1,11 +1,10 @@
 import React from "react";
-import { Text } from "../../Themed";
+import { Text } from "../Themed";
 import { View, StyleSheet, Pressable } from "react-native";
-import MiniChart from "./MiniChart";
-import { StockType } from "../../../hooks/useStocks";
+import { StockType } from "../../hooks/useStocks";
 import { Link } from "expo-router";
 function StockCard(props: StockType) {
-  const { name, symbol, price, sparkline, rate, rise, id } = props;
+  const { name, symbol, price, uri, id } = props;
   return (
     <Link href={`stock/${id}`} asChild>
       <Pressable style={styles.row}>
@@ -22,27 +21,19 @@ function StockCard(props: StockType) {
             {name}
           </Text>
         </View>
-        <View style={styles.col}>
-          <MiniChart rise={rise} sparkline={sparkline} />
-        </View>
-        <View style={[styles.col, { flex: 2 }]}>
-          <Text
-            style={{ fontSize: 18, fontWeight: "bold", alignSelf: "flex-end" }}
-          >
-            ${price}
-          </Text>
-          <Text
-            style={{
-              fontSize: 14,
-              fontWeight: "300",
-              color: rise ? "green" : "red",
-              alignSelf: "flex-end",
-            }}
-          >
-            {rise ? "+" : null}
-            {rate}%
-          </Text>
-        </View>
+        {!isNaN(parseInt(price)) ? (
+          <View style={[styles.col, { flex: 2 }]}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "bold",
+                alignSelf: "flex-end",
+              }}
+            >
+              ${price}
+            </Text>
+          </View>
+        ) : null}
       </Pressable>
     </Link>
   );

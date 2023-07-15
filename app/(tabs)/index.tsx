@@ -1,7 +1,8 @@
-import { StyleSheet, SafeAreaView, useColorScheme } from "react-native";
+import { StyleSheet, SafeAreaView, Pressable } from "react-native";
 import { View } from "../../components/Themed";
 import { Stocks, Header, Search } from "../../components/market-components";
 import Colors from "../../constants/Colors";
+import { Link } from "expo-router";
 
 export default function Market() {
   return (
@@ -17,9 +18,12 @@ export default function Market() {
         <View style={styles.ItemContainer}>
           <Header title="Markets" />
         </View>
-        <View style={styles.ItemContainer}>
-          <Search />
-        </View>
+        <Link href={"/search"} asChild>
+          <Pressable style={styles.ItemContainer}>
+            <Search />
+          </Pressable>
+        </Link>
+
         <View style={styles.StocksContainer}>
           <Stocks />
         </View>

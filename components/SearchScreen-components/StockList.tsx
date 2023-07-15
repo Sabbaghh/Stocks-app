@@ -1,19 +1,16 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import StockCardLoader from "./StockCardLoader";
+import StockCardLoader from "../market-components/Stocks/StockCardLoader";
 import StockCard from "./StockCard";
 import { Divider } from "@rneui/themed";
-import useStocks, { StockType } from "../../../hooks/useStocks";
-import { useFocusEffect } from "expo-router";
+import { StockType } from "../../hooks/useStocks";
 
-function StocksList() {
-  const { loading, stocks, getStocks } = useStocks();
-  useFocusEffect(
-    React.useCallback(() => {
-      getStocks();
-    }, [])
-  );
+interface Props {
+  stocks: StockType[];
+  loading: boolean;
+}
 
+function StocksList({ stocks, loading }: Props) {
   const renderStock = ({ item }: { item: StockType }) => {
     const { name, symbol, price, sparkline, rate, rise, id } = item;
     return (
@@ -32,8 +29,6 @@ function StocksList() {
   return (
     <View style={styles.container}>
       <FlatList
-        refreshing={false}
-        onRefresh={getStocks}
         ItemSeparatorComponent={() => <Divider />}
         data={loading ? [...Array(6)] : stocks}
         renderItem={!loading ? renderStock : () => <StockCardLoader />}

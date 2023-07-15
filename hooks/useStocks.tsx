@@ -8,6 +8,7 @@ export interface StockType {
   sparkline: number[];
   rate: string;
   rise: boolean;
+  id: string;
 }
 
 const useStocks = () => {
@@ -17,7 +18,7 @@ const useStocks = () => {
 
   const formatCoins = (coins: any[]): StockType[] => {
     return coins.map((coin) => {
-      const { name, symbol, price, sparkline, change } = coin;
+      const { name, symbol, price, sparkline, change, uuid } = coin;
       const rise = change > 0;
       return {
         name,
@@ -26,6 +27,7 @@ const useStocks = () => {
         sparkline,
         rate: parseFloat(change).toFixed(2),
         rise,
+        id: uuid,
       };
     });
   };
@@ -40,8 +42,6 @@ const useStocks = () => {
       limit: "20",
       offset: "0",
     };
-    setLoading(true);
-
     try {
       const { data } = await axios.get("/coins", { params });
       const { coins } = data.data;
@@ -55,7 +55,26 @@ const useStocks = () => {
     setLoading(false);
   };
 
-  return { loading, error, stocks, getStocks };
+  const getSearchedStocks = async (search: string) => {
+    const params = {
+      referenceCurrencyUuid: "yhjMzLPhuIDl",
+      query: search,
+    };
+    setLoading(true);
+    try {
+      const { data } = await axios.get("/search-suggestions", { params });
+      const { coins } = data.data;
+      const formattedCoins = formatCoins(coins);
+      setStocks(formattedCoins);
+    } catch (error) {
+      console.log(error);
+      setError(true);
+    }
+
+    setLoading(false);
+  };
+
+  return { loading, error, stocks, getStocks, getSearchedStocks };
 };
 
 export default useStocks;
