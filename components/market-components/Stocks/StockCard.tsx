@@ -1,35 +1,40 @@
 import React from "react";
 import { Text } from "../../Themed";
 import { View, StyleSheet } from "react-native";
-function StockCard() {
+import MiniChart from "./MiniChart";
+import { StockType } from "../../../hooks/useStocks";
+function StockCard(props: StockType) {
+  const { name, symbol, price, sparkline, rate, rise } = props;
   return (
     <View style={styles.row}>
       <View style={[styles.col, { flex: 2 }]}>
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>DJIA</Text>
+        <Text style={{ fontSize: 18, fontWeight: "bold" }}>{symbol}</Text>
         <Text
+          numberOfLines={1}
           style={{ fontSize: 14, fontWeight: "300", color: "rgba(1,1,1,0.2)" }}
         >
-          Dow Jones industr..
+          {name}
         </Text>
       </View>
       <View style={styles.col}>
-        <Text>Chart</Text>
+        <MiniChart rise={rise} sparkline={sparkline} />
       </View>
       <View style={[styles.col, { flex: 2 }]}>
         <Text
           style={{ fontSize: 18, fontWeight: "bold", alignSelf: "flex-end" }}
         >
-          $25,585.69
+          ${price}
         </Text>
         <Text
           style={{
             fontSize: 14,
             fontWeight: "300",
-            color: "red",
+            color: rise ? "green" : "red",
             alignSelf: "flex-end",
           }}
         >
-          -38.56%
+          {rise ? "+" : null}
+          {rate}%
         </Text>
       </View>
     </View>
@@ -41,6 +46,7 @@ const _PADDING = 20;
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
+    gap: 10,
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: _PADDING + 5,
