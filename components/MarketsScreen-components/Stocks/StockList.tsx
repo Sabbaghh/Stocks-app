@@ -35,7 +35,7 @@ function StocksList() {
         refreshing={false}
         onRefresh={getStocks}
         ItemSeparatorComponent={() => <Divider />}
-        data={loading ? [...Array(6)] : stocks}
+        data={loading ? [...Array(12)] : stocks}
         renderItem={!loading ? renderStock : () => <StockCardLoader />}
         keyExtractor={(item, index) => item?.id || index.toString()}
       />
