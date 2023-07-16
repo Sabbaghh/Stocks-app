@@ -11,7 +11,6 @@ const MiniChart = ({ sparkline = [], rise = false }: MiniChartProps) => {
   return (
     <View>
       <LineChart
-        fromZero={true}
         bezier
         data={{
           labels: [],
@@ -21,7 +20,7 @@ const MiniChart = ({ sparkline = [], rise = false }: MiniChartProps) => {
             },
           ],
         }}
-        width={width}
+        width={width * 5}
         height={height * 0.04}
         withOuterLines={false}
         withVerticalLines={false}
@@ -34,15 +33,10 @@ const MiniChart = ({ sparkline = [], rise = false }: MiniChartProps) => {
         chartConfig={{
           strokeWidth: 2,
           width: 1,
-          height: height * 0.04,
+          height: height * 0.025,
           backgroundGradientFrom: "#fff",
           backgroundGradientTo: "#fff",
           color: () => (rise ? "green" : "red"),
-          style: {
-            borderRadius: 15,
-            flex: 1,
-            alignSelf: "center",
-          },
         }}
       />
     </View>
