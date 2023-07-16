@@ -1,6 +1,10 @@
 import { StyleSheet, SafeAreaView, Pressable } from "react-native";
 import { View } from "../../components/Themed";
-import { Stocks, Header, Search } from "../../components/market-components";
+import {
+  Stocks,
+  Header,
+  Search,
+} from "../../components/MarketsScreen-components";
 import Colors from "../../constants/Colors";
 import { Link } from "expo-router";
 

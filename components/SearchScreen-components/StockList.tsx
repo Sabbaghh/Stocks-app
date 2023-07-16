@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
-import StockCardLoader from "../market-components/Stocks/StockCardLoader";
+import StockCardLoader from "../MarketsScreen-components/Stocks/StockCardLoader";
 import StockCard from "./StockCard";
 import { Divider } from "@rneui/themed";
 import { StockType } from "../../hooks/useStocks";
