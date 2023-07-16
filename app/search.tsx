@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import { View } from "react-native";
+import { View, SafeAreaView, StatusBar } from "react-native";
 import SearchBar from "../components/SearchBar";
 import Colors from "../constants/Colors";
 import useStocks from "../hooks/useStocks";
@@ -51,17 +51,25 @@ const Search = () => {
     return <Error />;
   }
   return (
-    <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <View
-        style={{
-          backgroundColor: Colors["light"].tint,
-          padding: 20,
-        }}
-      >
-        <SearchBar onSearch={onSearch} inputRef={inputRef} />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+        backgroundColor: Colors.light.tint,
+      }}
+    >
+      <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
+        <View
+          style={{
+            backgroundColor: Colors["light"].tint,
+            padding: 20,
+          }}
+        >
+          <SearchBar onSearch={onSearch} inputRef={inputRef} />
+        </View>
+        <StocksList stocks={stocks} loading={loading} />
       </View>
-      <StocksList stocks={stocks} loading={loading} />
-    </View>
+    </SafeAreaView>
   );
 };
 
