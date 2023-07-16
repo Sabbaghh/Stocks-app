@@ -1,13 +1,64 @@
-import { View, Text } from "react-native";
 import React from "react";
+import { View, ScrollView } from "react-native";
 import { useSearchParams } from "expo-router";
-
+import {
+  Header,
+  StockPrice,
+  Chart,
+  StockDetails,
+  Button,
+  ChartTimeLine,
+} from "../../components/StockScreen-components";
+import useStocks, { StockDetailsType } from "../../hooks/useStocks";
+import { useFocusEffect } from "expo-router";
 const Stock = () => {
-  const { id } = useSearchParams();
+  const { stock, getStock } = useStocks();
+  const { id } = useSearchParams() as { id: string };
+  const {
+    symbol,
+    name,
+    numberOfExchanges,
+    numberOfMarkets,
+    Volume,
+    rate,
+    price,
+    marketCap,
+    sparkline,
+    rise,
+  } = stock as StockDetailsType;
+
+  useFocusEffect(
+    React.useCallback(() => {
+      getStock(id);
+    }, [])
+  );
+
+  const handleChangeTime = (time: string) => {
+    getStock(id, time);
+  };
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <Text>Stock {id}</Text>
-    </View>
+    <ScrollView
+      stickyHeaderIndices={[0]}
+      showsVerticalScrollIndicator={false}
+      style={{ backgroundColor: "#fff" }}
+      contentContainerStyle={{ backgroundColor: "#fff", gap: 20 }}
+    >
+      <Header symbol={symbol} name={name} />
+      <StockPrice price={price} rate={rate} rise={rise} />
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <Chart sparkline={sparkline} />
+        <ChartTimeLine onChange={handleChangeTime} />
+      </View>
+      <View style={{ flex: 1 }}>
+        <StockDetails
+          numberOfExchanges={numberOfExchanges}
+          numberOfMarkets={numberOfMarkets}
+          Volume={Volume}
+          marketCap={marketCap}
+        />
+        <Button />
+      </View>
+    </ScrollView>
   );
 };
 
