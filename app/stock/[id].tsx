@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, SafeAreaView, StatusBar } from "react-native";
 import { useSearchParams } from "expo-router";
 import {
   Header,
@@ -20,7 +20,7 @@ const Stock = () => {
     name,
     numberOfExchanges,
     numberOfMarkets,
-    Volume,
+    volume,
     rate,
     price,
     marketCap,
@@ -38,31 +38,41 @@ const Stock = () => {
     getStock(id, time);
   };
   return (
-    <ScrollView
-      stickyHeaderIndices={[0]}
-      showsVerticalScrollIndicator={false}
-      style={{ backgroundColor: Colors.light.background }}
-      contentContainerStyle={{
+    <SafeAreaView
+      style={{
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
         backgroundColor: Colors.light.background,
-        gap: 20,
       }}
     >
-      <Header symbol={symbol} name={name} />
-      <StockPrice price={price} rate={rate} rise={rise} />
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Chart sparkline={sparkline} />
-        <ChartTimeLine onChange={handleChangeTime} />
-      </View>
-      <View style={{ flex: 1 }}>
-        <StockDetails
-          numberOfExchanges={numberOfExchanges}
-          numberOfMarkets={numberOfMarkets}
-          Volume={Volume}
-          marketCap={marketCap}
-        />
-        <Button />
-      </View>
-    </ScrollView>
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={false}
+        style={{ backgroundColor: Colors.light.background }}
+        contentContainerStyle={{
+          backgroundColor: Colors.light.background,
+          gap: 20,
+        }}
+      >
+        <Header symbol={symbol} name={name} />
+        <StockPrice price={price} rate={rate} rise={rise} />
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <Chart sparkline={sparkline} />
+          <ChartTimeLine onChange={handleChangeTime} />
+        </View>
+        <View style={{ flex: 1 }}>
+          <StockDetails
+            numberOfExchanges={numberOfExchanges}
+            numberOfMarkets={numberOfMarkets}
+            volume={volume}
+            marketCap={marketCap}
+          />
+          <Button />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

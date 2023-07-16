@@ -3,13 +3,13 @@ import React from "react";
 interface StockDetailsProps {
   numberOfExchanges: string;
   marketCap: string;
-  Volume: string;
+  volume: string;
   numberOfMarkets: string;
 }
 const StockDetails = ({
   numberOfExchanges,
   marketCap,
-  Volume,
+  volume,
   numberOfMarkets,
 }: StockDetailsProps) => {
   return (
@@ -20,7 +20,7 @@ const StockDetails = ({
       </View>
       <View style={styles.Container}>
         <Text style={{ fontWeight: "300", fontSize: 16 }}>Volume</Text>
-        <Text style={{ fontWeight: "bold", fontSize: 16 }}>${Volume}</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 16 }}>${volume}</Text>
       </View>
       <View style={styles.Container}>
         <Text style={{ fontWeight: "300", fontSize: 16 }}>

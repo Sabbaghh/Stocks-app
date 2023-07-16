@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, Pressable } from "react-native";
+import { StyleSheet, SafeAreaView, Pressable, StatusBar } from "react-native";
 import { View } from "../../components/Themed";
 import {
   Stocks,
@@ -11,14 +11,13 @@ import { Link } from "expo-router";
 export default function Market() {
   return (
     <SafeAreaView
-      style={[
-        styles.container,
-        {
-          backgroundColor: Colors["light"].tint,
-        },
-      ]}
+      style={{
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+        backgroundColor: Colors.light.tint,
+      }}
     >
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         <View style={styles.ItemContainer}>
           <Header title="Markets" />
         </View>
@@ -38,9 +37,6 @@ export default function Market() {
 
 const _PADDING = 20;
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   ItemContainer: {
     backgroundColor: Colors.light.tint,
     paddingTop: _PADDING / 2,

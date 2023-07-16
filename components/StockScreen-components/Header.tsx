@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     gap: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 40,
+    paddingTop: 10,
   },
 });
 export default Header;
