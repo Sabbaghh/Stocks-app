@@ -4,7 +4,7 @@ import { View, StyleSheet, Pressable } from "react-native";
 import { StockType } from "../../hooks/useStocks";
 import { Link } from "expo-router";
 function StockCard(props: StockType) {
-  const { name, symbol, price, uri, id } = props;
+  const { name, symbol, price, id } = props;
   return (
     <Link href={`stock/${id}`} asChild>
       <Pressable style={styles.row}>
