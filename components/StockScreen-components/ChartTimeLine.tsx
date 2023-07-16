@@ -4,27 +4,26 @@ import React, { useState } from "react";
 import { _TIME_LINE_VALUES } from "../../hooks/useStocks";
 import Colors from "../../constants/Colors";
 
-interface TimeLineProps {
-  value: string;
-  active: boolean;
-}
-
 const _TIMELINE: { [key: string]: TimeLineProps } = {
   "7d": {
-    value: _TIME_LINE_VALUES["7d"],
-    active: false,
+    value: _TIME_LINE_VALUES["7d"].value,
+    active: _TIME_LINE_VALUES["7d"].active,
   },
   "24h": {
-    value: _TIME_LINE_VALUES["24h"],
-    active: true,
+    value: _TIME_LINE_VALUES["24h"].value,
+    active: _TIME_LINE_VALUES["24h"].active,
   },
   "30d": {
-    value: _TIME_LINE_VALUES["30d"],
-    active: false,
+    value: _TIME_LINE_VALUES["30d"].value,
+    active: _TIME_LINE_VALUES["30d"].active,
   },
 };
 interface ChartTimeLineProps {
   onChange: (value: string) => void;
+}
+interface TimeLineProps {
+  value: string;
+  active: boolean;
 }
 const ChartTimeLine = ({ onChange }: ChartTimeLineProps) => {
   const [timeLine, setTimeLine] = useState<TimeLineProps[]>(

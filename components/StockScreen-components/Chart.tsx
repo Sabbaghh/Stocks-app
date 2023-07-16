@@ -3,7 +3,13 @@ import { Dimensions, ScrollView } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { _TIME_LINE_VALUES } from "../../hooks/useStocks";
 import Colors from "../../constants/Colors";
-const Chart = ({ sparkline }: { sparkline: string[] }) => {
+const Chart = ({
+  sparkline,
+  chartLabels,
+}: {
+  sparkline: string[];
+  chartLabels: string[];
+}) => {
   const scrollViewRef = useRef<ScrollView>(null);
 
   return (
@@ -19,7 +25,7 @@ const Chart = ({ sparkline }: { sparkline: string[] }) => {
       >
         <LineChart
           data={{
-            labels: [],
+            labels: chartLabels,
             datasets: [
               {
                 data: sparkline
@@ -42,7 +48,7 @@ const Chart = ({ sparkline }: { sparkline: string[] }) => {
           }}
           bezier
           style={{
-            paddingRight: 0,
+            paddingRight: -10,
           }}
         />
       </ScrollView>

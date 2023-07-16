@@ -17,9 +17,21 @@ export interface StockDetailsType extends StockType {
   numberOfExchanges: string;
 }
 export const _TIME_LINE_VALUES = {
-  "7d": "7d",
-  "24h": "24h",
-  "30d": "30d",
+  "7d": {
+    value: "7d",
+    labels: ["1d", "2d", "3d", "4d", "5d", "6d", "7d"],
+    active: false,
+  },
+  "24h": {
+    value: "24h",
+    labels: ["1h", "3h", "6h", "9h", "12h", "15h", "18h", "21h", "24h"],
+    active: true,
+  },
+  "30d": {
+    value: "30d",
+    labels: ["1", "3", "6", "9", "12", "15", "18", "21", "24", "27", "30"],
+    active: false,
+  },
 };
 
 const useStocks = () => {
@@ -75,7 +87,7 @@ const useStocks = () => {
   const getStocks = async () => {
     const params = {
       referenceCurrencyUuid: "yhjMzLPhuIDl",
-      timePeriod: _TIME_LINE_VALUES["24h"],
+      timePeriod: _TIME_LINE_VALUES["24h"].value,
       "tiers[0]": "1",
       orderBy: "marketCap",
       orderDirection: "desc",
@@ -116,7 +128,7 @@ const useStocks = () => {
 
   const getStock = async (
     id: string,
-    timePeriod: string = _TIME_LINE_VALUES["24h"]
+    timePeriod: string = _TIME_LINE_VALUES["24h"].value
   ) => {
     const params = {
       referenceCurrencyUuid: "yhjMzLPhuIDl",

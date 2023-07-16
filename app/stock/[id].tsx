@@ -9,12 +9,18 @@ import {
   Button,
   ChartTimeLine,
 } from "../../components/StockScreen-components";
-import useStocks, { StockDetailsType } from "../../hooks/useStocks";
+import useStocks, {
+  StockDetailsType,
+  _TIME_LINE_VALUES,
+} from "../../hooks/useStocks";
 import { useFocusEffect } from "expo-router";
 import Colors from "../../constants/Colors";
 const Stock = () => {
   const { stock, getStock } = useStocks();
   const { id } = useSearchParams() as { id: string };
+  const [chartLabels, setChartLabels] = React.useState<string[]>(
+    _TIME_LINE_VALUES["24h"].labels
+  );
   const {
     symbol,
     name,
@@ -33,8 +39,9 @@ const Stock = () => {
       getStock(id);
     }, [])
   );
-
-  const handleChangeTime = (time: string) => {
+  const handleChangeTime = (time: keyof typeof _TIME_LINE_VALUES) => {
+    const selectedTime = _TIME_LINE_VALUES[time];
+    setChartLabels(selectedTime.labels);
     getStock(id, time);
   };
   return (
@@ -59,7 +66,8 @@ const Stock = () => {
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <Chart sparkline={sparkline} />
+          <Chart sparkline={sparkline} chartLabels={chartLabels} />
+          {/* @ts-ignore */}
           <ChartTimeLine onChange={handleChangeTime} />
         </View>
         <View style={{ flex: 1 }}>
