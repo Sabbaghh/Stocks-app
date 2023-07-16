@@ -4,6 +4,7 @@ import StockCardLoader from "../MarketsScreen-components/Stocks/StockCardLoader"
 import StockCard from "./StockCard";
 import { Divider } from "@rneui/themed";
 import { StockType } from "../../hooks/useStocks";
+import Colors from "../../constants/Colors";
 
 interface Props {
   stocks: StockType[];
@@ -41,7 +42,7 @@ function StocksList({ stocks, loading }: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.light.background,
   },
 });
 

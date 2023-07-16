@@ -3,11 +3,12 @@ import { StyleSheet } from "react-native";
 import { Text } from "../Themed";
 import Icon from "../Icon";
 import { View } from "react-native";
+import Colors from "../../constants/Colors";
 
 function Search() {
   return (
     <View style={styles.container}>
-      <Icon color="#fff" name="search" size={25} />
+      <Icon color={Colors.light.background} name="search" size={25} />
       <View style={styles.search}>
         <Text style={{ color: "#ccc" }}>Search stocks</Text>
       </View>

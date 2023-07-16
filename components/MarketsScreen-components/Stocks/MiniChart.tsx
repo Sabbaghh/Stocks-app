@@ -4,7 +4,7 @@ import { LineChart } from "react-native-chart-kit";
 const { width } = Dimensions.get("window");
 const { height } = Dimensions.get("window");
 interface MiniChartProps {
-  sparkline: number[];
+  sparkline: string[];
   rise: boolean;
 }
 const MiniChart = ({ sparkline = [], rise = false }: MiniChartProps) => {
@@ -16,7 +16,7 @@ const MiniChart = ({ sparkline = [], rise = false }: MiniChartProps) => {
           labels: [],
           datasets: [
             {
-              data: sparkline,
+              data: sparkline.map((item) => parseFloat(item)),
             },
           ],
         }}

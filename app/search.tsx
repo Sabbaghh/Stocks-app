@@ -47,7 +47,7 @@ const Search = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <View
         style={{
           backgroundColor: Colors["light"].tint,

@@ -3,6 +3,7 @@ import { View, StyleSheet, Pressable, Dimensions } from "react-native";
 import { Text } from "../Themed";
 import Icon from "../Icon";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../../constants/Colors";
 
 const Header = ({
   symbol = "",
@@ -15,7 +16,11 @@ const Header = ({
   return (
     <View style={styles.Container}>
       <Pressable onPress={() => navigation.goBack()}>
-        <Icon size={50} color="#000" name="md-arrow-back-circle-outline" />
+        <Icon
+          size={50}
+          color={Colors.light.text}
+          name="md-arrow-back-circle-outline"
+        />
       </Pressable>
       <View style={{ flex: 1 }}>
         <Text style={{ fontSize: 18, fontWeight: "bold" }}>{symbol}</Text>
@@ -34,7 +39,7 @@ const Header = ({
 };
 const styles = StyleSheet.create({
   Container: {
-    backgroundColor: "#fff",
+    backgroundColor: Colors.light.background,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",

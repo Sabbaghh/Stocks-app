@@ -11,6 +11,7 @@ import {
 } from "../../components/StockScreen-components";
 import useStocks, { StockDetailsType } from "../../hooks/useStocks";
 import { useFocusEffect } from "expo-router";
+import Colors from "../../constants/Colors";
 const Stock = () => {
   const { stock, getStock } = useStocks();
   const { id } = useSearchParams() as { id: string };
@@ -40,8 +41,11 @@ const Stock = () => {
     <ScrollView
       stickyHeaderIndices={[0]}
       showsVerticalScrollIndicator={false}
-      style={{ backgroundColor: "#fff" }}
-      contentContainerStyle={{ backgroundColor: "#fff", gap: 20 }}
+      style={{ backgroundColor: Colors.light.background }}
+      contentContainerStyle={{
+        backgroundColor: Colors.light.background,
+        gap: 20,
+      }}
     >
       <Header symbol={symbol} name={name} />
       <StockPrice price={price} rate={rate} rise={rise} />

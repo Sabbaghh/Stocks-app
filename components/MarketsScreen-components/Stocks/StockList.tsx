@@ -5,6 +5,7 @@ import StockCard from "./StockCard";
 import { Divider } from "@rneui/themed";
 import useStocks, { StockType } from "../../../hooks/useStocks";
 import { useFocusEffect } from "expo-router";
+import Colors from "../../../constants/Colors";
 
 function StocksList() {
   const { loading, stocks, getStocks } = useStocks();
@@ -46,7 +47,7 @@ function StocksList() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.light.background,
   },
 });
 

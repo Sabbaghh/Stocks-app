@@ -2,6 +2,7 @@ import { View, TouchableOpacity } from "react-native";
 import { Text } from "../Themed";
 import React, { useState } from "react";
 import { _TIME_LINE_VALUES } from "../../hooks/useStocks";
+import Colors from "../../constants/Colors";
 
 interface TimeLineProps {
   value: string;
@@ -57,12 +58,14 @@ const ChartTimeLine = ({ onChange }: ChartTimeLineProps) => {
             borderRadius: 50,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: item.active ? "#000" : "#fff",
+            backgroundColor: item.active
+              ? Colors.light.text
+              : Colors.light.background,
           }}
         >
           <Text
             style={{
-              color: item.active ? "#fff" : "#000",
+              color: !item.active ? Colors.light.text : Colors.light.background,
               fontSize: 16,
               fontWeight: "bold",
             }}

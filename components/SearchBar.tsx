@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
 import Icon from "./Icon";
 import { View } from "react-native";
+import Colors from "../constants/Colors";
 
 interface SearchBarProps {
   onSearch(value: string): void;
@@ -18,7 +19,7 @@ const SearchBar = ({ onSearch, inputRef }: SearchBarProps) => {
 
   return (
     <View style={styles.container}>
-      <Icon color="#fff" name="search" size={25} />
+      <Icon color={Colors.light.background} name="search" size={25} />
       <TextInput
         ref={inputRef}
         style={styles.input}

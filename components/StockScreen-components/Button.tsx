@@ -1,6 +1,7 @@
 import { View, Text, Dimensions } from "react-native";
 import React from "react";
 import { Button as StyledButton } from "@rneui/base";
+import Colors from "../../constants/Colors";
 const { width } = Dimensions.get("window");
 const Button = () => {
   return (
@@ -14,13 +15,19 @@ const Button = () => {
     >
       <StyledButton
         buttonStyle={{
-          backgroundColor: "#000",
+          backgroundColor: Colors.light.text,
           width: width * 0.9,
           padding: 15,
           borderRadius: 10,
         }}
       >
-        <Text style={{ color: "#fff", fontSize: 16, fontWeight: "bold" }}>
+        <Text
+          style={{
+            color: Colors.light.background,
+            fontSize: 16,
+            fontWeight: "bold",
+          }}
+        >
           Add To Portfolio
         </Text>
       </StyledButton>
