@@ -15,8 +15,9 @@ import useStocks, {
 } from "../../hooks/useStocks";
 import { useFocusEffect } from "expo-router";
 import Colors from "../../constants/Colors";
+import Error from "../../components/Error";
 const Stock = () => {
-  const { stock, getStock } = useStocks();
+  const { stock, getStock, error } = useStocks();
   const { id } = useSearchParams() as { id: string };
   const [chartLabels, setChartLabels] = React.useState<string[]>(
     _TIME_LINE_VALUES["24h"].labels
@@ -44,6 +45,10 @@ const Stock = () => {
     setChartLabels(selectedTime.labels);
     getStock(id, time);
   };
+
+  if (error) {
+    return <Error />;
+  }
   return (
     <SafeAreaView
       style={{

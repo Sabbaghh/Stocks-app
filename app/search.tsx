@@ -5,9 +5,10 @@ import Colors from "../constants/Colors";
 import useStocks from "../hooks/useStocks";
 import StocksList from "../components/SearchScreen-components/StockList";
 import { useFocusEffect } from "expo-router";
+import Error from "../components/Error";
 
 const Search = () => {
-  const { getStocks, stocks, loading, getSearchedStocks } = useStocks();
+  const { getStocks, stocks, loading, getSearchedStocks, error } = useStocks();
   const inputRef = useRef<any>(null);
 
   useFocusEffect(
@@ -46,6 +47,9 @@ const Search = () => {
     };
   }, []);
 
+  if (error) {
+    return <Error />;
+  }
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <View

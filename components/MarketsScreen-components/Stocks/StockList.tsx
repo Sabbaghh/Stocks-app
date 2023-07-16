@@ -6,9 +6,10 @@ import { Divider } from "@rneui/themed";
 import useStocks, { StockType } from "../../../hooks/useStocks";
 import { useFocusEffect } from "expo-router";
 import Colors from "../../../constants/Colors";
+import Error from "../../Error";
 
 function StocksList() {
-  const { loading, stocks, getStocks } = useStocks();
+  const { loading, stocks, getStocks, error } = useStocks();
   useFocusEffect(
     React.useCallback(() => {
       getStocks();
@@ -30,6 +31,9 @@ function StocksList() {
     );
   };
 
+  if (error) {
+    return <Error />;
+  }
   return (
     <View style={styles.container}>
       <FlatList

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "../lib/axios";
 
 export interface StockType {
@@ -99,11 +99,11 @@ const useStocks = () => {
       const { coins } = data.data;
       const formattedCoins = formatStocks(coins);
       setStocks(formattedCoins);
+      setError(false);
     } catch (error) {
       console.log(error);
       setError(true);
     }
-
     setLoading(false);
   };
 
@@ -118,6 +118,7 @@ const useStocks = () => {
       const { coins } = data.data;
       const formattedCoins = formatStocks(coins);
       setStocks(formattedCoins);
+      setError(false);
     } catch (error) {
       console.log(error);
       setError(true);
@@ -140,6 +141,7 @@ const useStocks = () => {
       const { coin } = data.data;
       const formattedStock = formatStock(coin);
       setStock(formattedStock);
+      setError(false);
     } catch (error) {
       console.log(error);
       setError(true);
