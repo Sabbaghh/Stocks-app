@@ -12,7 +12,7 @@ export interface StockType {
 }
 export interface StockDetailsType extends StockType {
   marketCap: string;
-  Volume: string;
+  volume: string;
   numberOfMarkets: string;
   numberOfExchanges: string;
 }
@@ -65,7 +65,7 @@ const useStocks = () => {
       rate: parseFloat(change).toFixed(2),
       id: uuid,
       marketCap,
-      Volume: stock["24hVolume"],
+      volume: stock["24hVolume"],
       numberOfMarkets,
       numberOfExchanges,
       rise,
